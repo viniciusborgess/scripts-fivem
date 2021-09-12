@@ -3,7 +3,7 @@ local Tunnel = module("vrp","lib/Tunnel")
 local Proxy = module("vrp","lib/Proxy")
 vRP = Proxy.getInterface("vRP")
 emP = {} 
-Tunnel.bindInterface("madrugadao_rout_lockpick",emP)
+Tunnel.bindInterface("madrugadao_rout_repairkit",emP)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- QUANTIDADE
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ end
 function emP.checkPermission()
     local source = source
     local user_id = vRP.getUserId(source)
-	if vRP.hasPermission(user_id,"motoclub.permissao") then
+	if vRP.hasPermission(user_id,"mecanico.permissao") then
         return true
     end
 end
@@ -31,9 +31,9 @@ function emP.checkPayment()
 	emP.Quantidade()
 	local source = source
 	local user_id = vRP.getUserId(source)
-	if user_id and vRP.hasPermission(user_id,"motoclub.permissao") then
-	if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("lockpick") <= vRP.getInventoryMaxWeight(user_id) then
-		vRP.giveInventoryItem(user_id,"lockpick",1)
+	if user_id and vRP.hasPermission(user_id,"mecanico.permissao") then
+	if vRP.getInventoryWeight(user_id)+vRP.getItemWeight("repairkit") <= vRP.getInventoryMaxWeight(user_id) then
+		vRP.giveInventoryItem(user_id,"repairkit",1)
 		quantidade[source] = nil
 		return true
 		end
